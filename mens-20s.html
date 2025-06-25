@@ -246,22 +246,20 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            gap: 3px;
+            gap: 2px;
             overflow: hidden;
             position: relative;
-            padding: 3px;
         }
 
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0.5rem;
             transition: transform 0.3s ease;
         }
 
         .clothing-item:hover .image-container img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .single-image {
@@ -354,20 +352,14 @@
             line-height: 1.4;
         }
 
-        /* Error states */
+        /* Loading states */
         .error-state {
             color: var(--red);
             text-align: center;
-            padding: 1rem;
+            padding: 2rem;
             background: rgba(var(--red), 0.1);
             border-radius: 0.75rem;
             border: 1px solid rgba(var(--red), 0.2);
-            grid-column: span 2;
-            grid-row: span 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         /* Responsive design */
@@ -631,250 +623,7 @@
                 {
                     name: 'Oversized Hoodie',
                     description: 'A loose-fitting hoodie in bold colors or with graphic prints, perfect for layering.',
-                    searchQuery: 'mens dark wash jeans smart casual fitted',
-                    tags: ['Versatile', 'Smart', 'Classic']
-                }
-            ],
-            'y2k-revival': [
-                {
-                    name: 'Baggy Cargo Pants',
-                    description: 'Oversized pants with multiple pockets in bright or metallic colors.',
-                    searchQuery: 'mens baggy cargo pants y2k oversized pockets',
-                    tags: ['Y2K', 'Oversized', 'Functional']
-                },
-                {
-                    name: 'Metallic Puffer Vest',
-                    description: 'A shiny, puffy vest that screams early 2000s.',
-                    searchQuery: 'mens metallic puffer vest y2k shiny silver',
-                    tags: ['Metallic', 'Y2K', 'Statement']
-                },
-                {
-                    name: 'Tech Wear Sneakers',
-                    description: 'Chunky sneakers with futuristic design elements.',
-                    searchQuery: 'mens chunky sneakers y2k tech futuristic',
-                    tags: ['Chunky', 'Tech', 'Futuristic']
-                },
-                {
-                    name: 'Mesh Jersey',
-                    description: 'A sports-inspired mesh top in bright colors.',
-                    searchQuery: 'mens mesh jersey y2k sports bright colors',
-                    tags: ['Mesh', 'Sports', 'Bright']
-                },
-                {
-                    name: 'Low-Rise Jeans',
-                    description: 'The iconic low-waisted jeans of the early 2000s.',
-                    searchQuery: 'mens low rise jeans y2k low waist denim',
-                    tags: ['Y2K', 'Low Rise', 'Iconic']
-                },
-                {
-                    name: 'Tinted Sunglasses',
-                    description: 'Small, tinted glasses that were popular in the early 2000s.',
-                    searchQuery: 'mens tinted sunglasses y2k small colored lenses',
-                    tags: ['Y2K', 'Accessories', 'Tinted']
-                }
-            ],
-            'vintage-workwear': [
-                {
-                    name: 'Denim Jacket',
-                    description: 'A classic denim jacket in vintage wash, perfect for layering.',
-                    searchQuery: 'mens denim jacket vintage workwear blue',
-                    tags: ['Denim', 'Classic', 'Layering']
-                },
-                {
-                    name: 'Work Boots',
-                    description: 'Sturdy leather boots built for durability and style.',
-                    searchQuery: 'mens work boots brown leather vintage',
-                    tags: ['Leather', 'Durable', 'Classic']
-                },
-                {
-                    name: 'Flannel Shirt',
-                    description: 'A thick, warm shirt in classic plaid patterns.',
-                    searchQuery: 'mens flannel shirt plaid workwear vintage',
-                    tags: ['Plaid', 'Warm', 'Classic']
-                },
-                {
-                    name: 'Canvas Pants',
-                    description: 'Durable work pants in heavy canvas material.',
-                    searchQuery: 'mens canvas work pants vintage workwear',
-                    tags: ['Canvas', 'Durable', 'Work']
-                },
-                {
-                    name: 'Henley Shirt',
-                    description: 'A collarless shirt with a partial button placket.',
-                    searchQuery: 'mens henley shirt vintage workwear long sleeve',
-                    tags: ['Classic', 'Layering', 'Casual']
-                },
-                {
-                    name: 'Suspenders',
-                    description: 'Classic suspenders for an authentic vintage workwear look.',
-                    searchQuery: 'mens suspenders vintage workwear classic',
-                    tags: ['Vintage', 'Accessories', 'Classic']
-                }
-            ]
-        };
-
-        // Image fetching and loading functions
-        async function loadAestheticImages(aestheticId) {
-            const grid = document.getElementById(`${aestheticId}-grid`);
-            const items = aestheticItems[aestheticId];
-            
-            // Create HTML structure first
-            grid.innerHTML = items.map(item => createClothingItem(item)).join('');
-            
-            // Then load images
-            const clothingItems = grid.querySelectorAll('.clothing-item');
-            
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const clothingItem = clothingItems[i];
-                const imageContainer = clothingItem.querySelector('.image-container');
-                
-                try {
-                    console.log(`Fetching images for: ${item.searchQuery}`);
-                    const response = await fetch(`https://api.romanrossi.social/api/images/?q=${encodeURIComponent(item.searchQuery)}`);
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    console.log('API Response:', data);
-                    
-                    if (data.images && Array.isArray(data.images) && data.images.length > 0) {
-                        // Create image grid
-                        let imageHTML = '';
-                        
-                        if (data.images.length === 1) {
-                            imageHTML = `<img src="${data.images[0]}" alt="${item.name}" class="single-image" loading="lazy">`;
-                        } else {
-                            // Show up to 4 images in a 2x2 grid
-                            const imagesToShow = data.images.slice(0, 4);
-                            imageHTML = imagesToShow.map(url => 
-                                `<img src="${url}" alt="${item.name}" loading="lazy">`
-                            ).join('');
-                        }
-                        
-                        imageContainer.innerHTML = imageHTML;
-                        
-                        // Add error handling for individual images
-                        const imgs = imageContainer.querySelectorAll('img');
-                        imgs.forEach(img => {
-                            img.onerror = function() {
-                                this.style.display = 'none';
-                            };
-                        });
-                        
-                    } else {
-                        console.log('No images returned from API');
-                        imageContainer.innerHTML = `
-                            <div class="error-state">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
-                                <div>No images found</div>
-                            </div>
-                        `;
-                    }
-                } catch (error) {
-                    console.error('Error in loadAestheticImages:', error);
-                    imageContainer.innerHTML = `
-                        <div class="error-state">
-                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
-                            <div>Failed to fetch images</div>
-                        </div>
-                    `;
-                }
-                
-                // Add a small delay between requests to avoid overwhelming the API
-                await new Promise(resolve => setTimeout(resolve, 300));
-            }
-        }
-
-        // Create clothing item HTML
-        function createClothingItem(item) {
-            return `
-                <div class="clothing-item">
-                    <div class="image-container">
-                        <div class="loading-placeholder">🔄</div>
-                    </div>
-                    <div class="clothing-name">${item.name}</div>
-                    <div class="clothing-description">${item.description}</div>
-                    <div class="clothing-tags">
-                        ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
-        // Tab switching functionality
-        const aestheticButtons = document.querySelectorAll('.tab');
-        const aestheticDisplays = document.querySelectorAll('.aesthetic-display');
-
-        aestheticButtons.forEach(button => {
-            button.addEventListener('click', async () => {
-                // Remove active class from all buttons and displays
-                aestheticButtons.forEach(btn => btn.classList.remove('active'));
-                aestheticDisplays.forEach(display => display.classList.remove('active'));
-
-                // Add active class to clicked button
-                button.classList.add('active');
-
-                // Show corresponding display
-                const targetAesthetic = button.getAttribute('data-aesthetic');
-                const targetDisplay = document.getElementById(targetAesthetic);
-                if (targetDisplay) {
-                    targetDisplay.classList.add('active');
-                    
-                    // Load images if not already loaded
-                    const grid = document.getElementById(`${targetAesthetic}-grid`);
-                    if (grid.children.length === 0) {
-                        await loadAestheticImages(targetAesthetic);
-                    }
-                }
-            });
-        });
-
-        // Add click functionality to clothing items for shopping search
-        function addClickHandlers() {
-            document.addEventListener('click', (e) => {
-                const clothingItem = e.target.closest('.clothing-item');
-                if (clothingItem) {
-                    const clothingName = clothingItem.querySelector('.clothing-name').textContent;
-                    const searchQuery = `${clothingName} men's clothing`;
-                    // Use tbm=isch for Google Images search
-                    const googleImagesUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}&tbm=isch`;
-                    window.open(googleImagesUrl, '_blank');
-                }
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadAestheticImages('streetwear');
-            addClickHandlers();
-        });
-
-        // Add interactive animations
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.clothing-item');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-                } else {
-                    card.style.transform = '';
-                }
-            });
-        });
-    </script>
-</body>
-</html>mens oversized hoodie streetwear graphic',
+                    searchQuery: 'mens oversized hoodie streetwear graphic',
                     tags: ['Oversized', 'Casual', 'Layering']
                 },
                 {
@@ -1018,4 +767,274 @@
                 {
                     name: 'Dark Wash Jeans',
                     description: 'Well-fitted jeans in a dark wash that looks more polished.',
-                    searchQuery: '
+                    searchQuery: 'mens dark wash jeans smart casual fitted',
+                    tags: ['Versatile', 'Smart', 'Classic']
+                }
+            ],
+            'y2k-revival': [
+                {
+                    name: 'Baggy Cargo Pants',
+                    description: 'Oversized pants with multiple pockets in bright or metallic colors.',
+                    searchQuery: 'mens baggy cargo pants y2k oversized pockets',
+                    tags: ['Y2K', 'Oversized', 'Functional']
+                },
+                {
+                    name: 'Metallic Puffer Vest',
+                    description: 'A shiny, puffy vest that screams early 2000s.',
+                    searchQuery: 'mens metallic puffer vest y2k shiny silver',
+                    tags: ['Metallic', 'Y2K', 'Statement']
+                },
+                {
+                    name: 'Tech Wear Sneakers',
+                    description: 'Chunky sneakers with futuristic design elements.',
+                    searchQuery: 'mens chunky sneakers y2k tech futuristic',
+                    tags: ['Chunky', 'Tech', 'Futuristic']
+                },
+                {
+                    name: 'Mesh Jersey',
+                    description: 'A sports-inspired mesh top in bright colors.',
+                    searchQuery: 'mens mesh jersey y2k sports bright colors',
+                    tags: ['Mesh', 'Sports', 'Bright']
+                },
+                {
+                    name: 'Low-Rise Jeans',
+                    description: 'The iconic low-waisted jeans of the early 2000s.',
+                    searchQuery: 'mens low rise jeans y2k low waist denim',
+                    tags: ['Y2K', 'Low Rise', 'Iconic']
+                },
+                {
+                    name: 'Tinted Sunglasses',
+                    description: 'Small, tinted glasses that were popular in the early 2000s.',
+                    searchQuery: 'mens tinted sunglasses y2k small colored lenses',
+                    tags: ['Y2K', 'Accessories', 'Tinted']
+                }
+            ],
+            'vintage-workwear': [
+                {
+                    name: 'Denim Jacket',
+                    description: 'A classic denim jacket in vintage wash, perfect for layering.',
+                    searchQuery: 'mens denim jacket vintage workwear blue',
+                    tags: ['Denim', 'Classic', 'Layering']
+                },
+                {
+                    name: 'Work Boots',
+                    description: 'Sturdy leather boots built for durability and style.',
+                    searchQuery: 'mens work boots brown leather vintage',
+                    tags: ['Leather', 'Durable', 'Classic']
+                },
+                {
+                    name: 'Flannel Shirt',
+                    description: 'A thick, warm shirt in classic plaid patterns.',
+                    searchQuery: 'mens flannel shirt plaid workwear vintage',
+                    tags: ['Plaid', 'Warm', 'Classic']
+                },
+                {
+                    name: 'Canvas Pants',
+                    description: 'Durable work pants in heavy canvas material.',
+                    searchQuery: 'mens canvas work pants vintage workwear',
+                    tags: ['Canvas', 'Durable', 'Work']
+                },
+                {
+                    name: 'Henley Shirt',
+                    description: 'A collarless shirt with a partial button placket.',
+                    searchQuery: 'mens henley shirt vintage workwear long sleeve',
+                    tags: ['Classic', 'Layering', 'Casual']
+                },
+                {
+                    name: 'Suspenders',
+                    description: 'Classic suspenders for an authentic vintage workwear look.',
+                    searchQuery: 'mens suspenders vintage workwear classic',
+                    tags: ['Vintage', 'Accessories', 'Classic']
+                }
+            ]
+        };
+
+        // Image fetching function
+        async function fetchImage(searchQuery) {
+            try {
+                const response = await fetch(`https://api.romanrossi.social/api/images/?q=${encodeURIComponent(searchQuery)}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('API Response for query:', searchQuery, data); // Debug log
+                
+                if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                    // Return a random image from the results for variety
+                    const randomIndex = Math.floor(Math.random() * data.images.length);
+                    return data.images[randomIndex];
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Error fetching image for query:', searchQuery, error);
+                return null;
+            }
+        }
+
+        // Create clothing item HTML
+        function createClothingItem(item) {
+            return `
+                <div class="clothing-item">
+                    <div class="image-container">
+                        <div class="loading-placeholder">🔄</div>
+                    </div>
+                    <div class="clothing-name">${item.name}</div>
+                    <div class="clothing-description">${item.description}</div>
+                    <div class="clothing-tags">
+                        ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load images for an aesthetic
+        async function loadAestheticImages(aestheticId) {
+            const grid = document.getElementById(`${aestheticId}-grid`);
+            const items = aestheticItems[aestheticId];
+            
+            // Create HTML structure first
+            grid.innerHTML = items.map(item => createClothingItem(item)).join('');
+            
+            // Then load images
+            const clothingItems = grid.querySelectorAll('.clothing-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const clothingItem = clothingItems[i];
+                const imageContainer = clothingItem.querySelector('.image-container');
+                
+                try {
+                    console.log(`Fetching images for: ${item.searchQuery}`);
+                    const response = await fetch(`https://api.romanrossi.social/api/images/?q=${encodeURIComponent(item.searchQuery)}`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    
+                    if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                        // Create image grid
+                        let imageHTML = '';
+                        
+                        if (data.images.length === 1) {
+                            imageHTML = `<img src="${data.images[0]}" alt="${item.name}" class="single-image" loading="lazy">`;
+                        } else {
+                            // Show up to 4 images in a 2x2 grid
+                            const imagesToShow = data.images.slice(0, 4);
+                            imageHTML = imagesToShow.map(url => 
+                                `<img src="${url}" alt="${item.name}" loading="lazy">`
+                            ).join('');
+                        }
+                        
+                        imageContainer.innerHTML = imageHTML;
+                        
+                        // Add error handling for individual images
+                        const imgs = imageContainer.querySelectorAll('img');
+                        imgs.forEach(img => {
+                            img.onerror = function() {
+                                this.style.display = 'none';
+                            };
+                        });
+                        
+                    } else {
+                        console.log('No images returned from API');
+                        imageContainer.innerHTML = `
+                            <div class="error-state">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+                                <div>No images found</div>
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    console.error('Error in loadAestheticImages:', error);
+                    imageContainer.innerHTML = `
+                        <div class="error-state">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                            <div>Failed to fetch images</div>
+                        </div>
+                    `;
+                }
+                
+                // Add a small delay between requests to avoid overwhelming the API
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+        }
+
+        // Tab switching functionality
+        const aestheticButtons = document.querySelectorAll('.tab');
+        const aestheticDisplays = document.querySelectorAll('.aesthetic-display');
+
+        aestheticButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                // Remove active class from all buttons and displays
+                aestheticButtons.forEach(btn => btn.classList.remove('active'));
+                aestheticDisplays.forEach(display => display.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Show corresponding display
+                const targetAesthetic = button.getAttribute('data-aesthetic');
+                const targetDisplay = document.getElementById(targetAesthetic);
+                if (targetDisplay) {
+                    targetDisplay.classList.add('active');
+                    
+                    // Load images if not already loaded
+                    const grid = document.getElementById(`${targetAesthetic}-grid`);
+                    if (grid.children.length === 0) {
+                        await loadAestheticImages(targetAesthetic);
+                    }
+                }
+            });
+        });
+
+        // Load initial aesthetic images
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAestheticImages('streetwear');
+        });
+
+        // Add click functionality to clothing items for shopping search
+        function addClickHandlers() {
+            document.addEventListener('click', (e) => {
+                const clothingItem = e.target.closest('.clothing-item');
+                if (clothingItem) {
+                    const clothingName = clothingItem.querySelector('.clothing-name').textContent;
+                    const searchQuery = `${clothingName} men's clothing`;
+                    // Fix: Use tbm=isch for Google Images search
+                    const googleImagesUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}&tbm=isch`;
+                    window.open(googleImagesUrl, '_blank');
+                }
+            });
+        }
+
+        // Initialize click handlers
+        addClickHandlers();
+
+        // Add some interactive animations
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.clothing-item');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                } else {
+                    card.style.transform = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
