@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide for Gen Z - Soothing Aesthetics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Catppuccin Mocha Theme */
+            --bg-primary: #1e1e2e;
+            --bg-secondary: #181825;
+            --bg-tertiary: #45475a;
+            --text-primary: #cdd6f4;
+            --text-secondary: #bac2de;
+            --text-muted: #a6adc8;
+            --accent: #89b4fa;
+            --accent-hover: #74c7ec;
+            --surface: #585b70;
+            --overlay: #6c7086;
+            --border: #7f849c;
+            --pink: #f5c2e7;
+            --mauve: #cba6f7;
+            --green: #a6e3a1;
+            --yellow: #f9e2af;
+            --peach: #fab387;
+            --red: #f38ba8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mauve), var(--pink));
+            color: var(--bg-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Aesthetic tabs */
+        .aesthetic-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            background: rgba(var(--surface), 0.3);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .tab:hover::before {
+            left: 100%;
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .tab.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Aesthetic display */
+        .aesthetic-display {
+            display: none;
+            background: rgba(var(--bg-secondary), 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aesthetic-display.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .aesthetic-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .aesthetic-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .aesthetic-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Clothing grid */
+        .clothing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .clothing-item {
+            background: rgba(var(--bg-tertiary), 0.6);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clothing-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: var(--accent);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--surface), var(--overlay));
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .clothing-item:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .single-image {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .loading-placeholder {
+            color: var(--text-muted);
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .clothing-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .clothing-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .clothing-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(var(--accent), 0.2);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Style tips */
+        .style-tips {
+            background: linear-gradient(135deg, rgba(var(--mauve), 0.1), rgba(var(--pink), 0.1));
+            border: 1px solid rgba(var(--mauve), 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .style-tips h3 {
+            color: var(--mauve);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .tip-card {
+            background: rgba(var(--bg-tertiary), 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Loading states */
+        .error-state {
+            color: var(--red);
+            text-align: center;
+            padding: 2rem;
+            background: rgba(var(--red), 0.1);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(var(--red), 0.2);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .aesthetic-tabs {
+                gap: 0.25rem;
+            }
+            
+            .tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .clothing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">Style Vibes</h1>
+            <p class="subtitle">Your ultimate style guide for the digital age ✨</p>
+            <div class="age-tag">20s Edition</div>
+        </header>
+
+        <div class="aesthetic-tabs">
+            <button class="tab active" data-aesthetic="trendy-minimal">📱 Trendy Minimal</button>
+            <button class="tab" data-aesthetic="soft-grunge">🎸 Soft Grunge</button>
+            <button class="tab" data-aesthetic="indie-sleaze">🌟 Indie Sleaze</button>
+            <button class="tab" data-aesthetic="dark-academia">📚 Dark Academia</button>
+            <button class="tab" data-aesthetic="y2k-revival">💿 Y2K Revival</button>
+            <button class="tab" data-aesthetic="cottagecore">🌸 Cottagecore</button>
+        </div>
+
+        <div class="content">
+            <!-- Trendy Minimal -->
+            <div class="aesthetic-display active" id="trendy-minimal">
+                <h2 class="aesthetic-title">Trendy Minimal</h2>
+                <p class="aesthetic-description">Clean lines meet modern comfort. Perfect for the Instagram-worthy, effortless look that works from coffee shops to casual dates. Think elevated basics with a contemporary twist.</p>
+                
+                <div class="clothing-grid" id="trendy-minimal-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>💫 Styling Tips for Trendy Minimal</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">🎨</div>
+                            <div class="tip-text">Stick to a neutral palette with one pop of color</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">✨</div>
+                            <div class="tip-text">Invest in quality basics that you can mix and match</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">📐</div>
+                            <div class="tip-text">Focus on clean silhouettes and perfect fits</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">💎</div>
+                            <div class="tip-text">Choose minimal jewelry in gold or silver</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Grunge -->
+            <div class="aesthetic-display" id="soft-grunge">
+                <h2 class="aesthetic-title">Soft Grunge</h2>
+                <p class="aesthetic-description">Edgy meets comfortable. This aesthetic combines the rebellious spirit of grunge with softer, more wearable pieces. Perfect for music festivals, art galleries, and expressing your creative side.</p>
+                
+                <div class="clothing-grid" id="soft-grunge-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>🎸 Styling Tips for Soft Grunge</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">🖤</div>
+                            <div class="tip-text">Mix textures: denim, leather, velvet, and cotton</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🌙</div>
+                            <div class="tip-text">Layer pieces for depth and visual interest</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">💀</div>
+                            <div class="tip-text">Add band tees, patches, or vintage graphic prints</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">⚡</div>
+                            <div class="tip-text">Complete with chunky boots or worn sneakers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indie Sleaze -->
+            <div class="aesthetic-display" id="indie-sleaze">
+                <h2 class="aesthetic-title">Indie Sleaze</h2>
+                <p class="aesthetic-description">Party-ready with an effortless edge. Think late-night concerts, art openings, and rooftop parties. This style embraces the glamorous mess of early 2000s indie culture.</p>
+                
+                <div class="clothing-grid" id="indie-sleaze-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>🌟 Styling Tips for Indie Sleaze</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">✨</div>
+                            <div class="tip-text">Mix metallic pieces with dark, moody tones</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🕶️</div>
+                            <div class="tip-text">Add statement sunglasses and bold accessories</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🦓</div>
+                            <div class="tip-text">Embrace animal prints and bold patterns</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">💄</div>
+                            <div class="tip-text">Complete with smoky eyes and glossy lips</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dark Academia -->
+            <div class="aesthetic-display" id="dark-academia">
+                <h2 class="aesthetic-title">Dark Academia</h2>
+                <p class="aesthetic-description">Scholarly elegance with a mysterious twist. Perfect for library study sessions, campus life, and channeling your inner intellectual. Think timeless pieces with academic flair.</p>
+                
+                <div class="clothing-grid" id="dark-academia-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>📚 Styling Tips for Dark Academia</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">🍂</div>
+                            <div class="tip-text">Stick to autumn colors: burgundy, forest green, navy</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">📖</div>
+                            <div class="tip-text">Layer blazers, cardigans, and vintage pieces</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🕯️</div>
+                            <div class="tip-text">Add vintage accessories like pocket watches</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🎭</div>
+                            <div class="tip-text">Choose structured, tailored silhouettes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Y2K Revival -->
+            <div class="aesthetic-display" id="y2k-revival">
+                <h2 class="aesthetic-title">Y2K Revival</h2>
+                <p class="aesthetic-description">Futuristic nostalgia meets modern trends. Embrace the playful, tech-inspired fashion of the early 2000s with a contemporary update. Perfect for standing out and having fun with fashion.</p>
+                
+                <div class="clothing-grid" id="y2k-revival-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>💿 Styling Tips for Y2K Revival</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">🌈</div>
+                            <div class="tip-text">Mix bright colors with metallic accents</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🔮</div>
+                            <div class="tip-text">Add holographic or iridescent accessories</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">💎</div>
+                            <div class="tip-text">Layer chunky jewelry and hair accessories</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🦋</div>
+                            <div class="tip-text">Play with fun prints and textures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cottagecore -->
+            <div class="aesthetic-display" id="cottagecore">
+                <h2 class="aesthetic-title">Cottagecore</h2>
+                <p class="aesthetic-description">Romantic and whimsical with a touch of vintage charm. Perfect for farmers markets, picnics, and embracing a slower, more mindful lifestyle. Think floral prints and natural fabrics.</p>
+                
+                <div class="clothing-grid" id="cottagecore-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+
+                <div class="style-tips">
+                    <h3>🌸 Styling Tips for Cottagecore</h3>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">🌻</div>
+                            <div class="tip-text">Choose natural fabrics like linen and cotton</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🍄</div>
+                            <div class="tip-text">Embrace floral prints and earthy tones</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🧺</div>
+                            <div class="tip-text">Add vintage accessories and wicker bags</div>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-icon">🦋</div>
+                            <div class="tip-text">Layer delicate jewelry and hair accessories</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define clothing items for each aesthetic
+        const aestheticItems = {
+            'trendy-minimal': [
+                {
+                    name: 'Oversized Blazer',
+                    description: 'A structured blazer in neutral tones, perfect for layering over tank tops or worn as a dress.',
+                    searchQuery: 'women oversized blazer minimalist beige',
+                    tags: ['Versatile', 'Professional', 'Layering']
+                },
+                {
+                    name: 'High-Waisted Mom Jeans',
+                    description: 'Relaxed fit jeans that are flattering and comfortable, perfect for everyday wear.',
+                    searchQuery: 'women high waisted mom jeans light wash',
+                    tags: ['Comfortable', 'Casual', 'Vintage']
+                },
+                {
+                    name: 'Ribbed Tank Top',
+                    description: 'A fitted tank in soft cotton, ideal for layering or wearing solo in warm weather.',
+                    searchQuery: 'women ribbed tank top white basic',
+                    tags: ['Basic', 'Layering', 'Summer']
+                },
+                {
+                    name: 'Chunky Knit Cardigan',
+                    description: 'An oversized cardigan perfect for cozy days and adding texture to minimal outfits.',
+                    searchQuery: 'women chunky knit cardigan oversized cream',
+                    tags: ['Cozy', 'Textured', 'Layering']
+                },
+                {
+                    name: 'Platform Sneakers',
+                    description: 'Clean white sneakers with a platform sole for height and modern style.',
+                    searchQuery: 'women platform sneakers white minimal',
+                    tags: ['Comfortable', 'Trendy', 'Height']
+                },
+                {
+                    name: 'Midi Slip Dress',
+                    description: 'A silky slip dress that can be dressed up or down, perfect for versatile styling.',
+                    searchQuery: 'women midi slip dress satin beige',
+                    tags: ['Elegant', 'Versatile', 'Date Night']
+                }
+            ],
+            'soft-grunge': [
+                {
+                    name: 'Vintage Band Tee',
+                    description: 'An oversized graphic tee with a vintage wash, perfect for expressing your music taste.',
+                    searchQuery: 'women vintage band t-shirt oversized distressed',
+                    tags: ['Vintage', 'Music', 'Graphic']
+                },
+                {
+                    name: 'Ripped Skinny Jeans',
+                    description: 'Black skinny jeans with strategic rips and distressing for an edgy look.',
+                    searchQuery: 'women ripped skinny jeans black distressed',
+                    tags: ['Edgy', 'Distressed', 'Fitted']
+                },
+                {
+                    name: 'Leather Jacket',
+                    description: 'A classic black leather jacket that adds instant edge to any outfit.',
+                    searchQuery: 'women black leather jacket moto style',
+                    tags: ['Edgy', 'Classic', 'Layering']
+                },
+                {
+                    name: 'Plaid Flannel Shirt',
+                    description: 'An oversized flannel in dark colors, perfect for layering over tanks or tying around the waist.',
+                    searchQuery: 'women plaid flannel shirt oversized dark',
+                    tags: ['Grunge', 'Layering', 'Comfortable']
+                },
+                {
+                    name: 'Combat Boots',
+                    description: 'Black lace-up boots with a chunky sole, perfect for adding height and attitude.',
+                    searchQuery: 'women combat boots black chunky platform',
+                    tags: ['Edgy', 'Height', 'Sturdy']
+                },
+                {
+                    name: 'Mesh Long Sleeve',
+                    description: 'A sheer mesh top for layering under tanks or over bralettes for an edgy look.',
+                    searchQuery: 'women mesh long sleeve top black sheer',
+                    tags: ['Sheer', 'Layering', 'Edgy']
+                }
+            ],
+            'indie-sleaze': [
+                {
+                    name: 'Metallic Mini Skirt',
+                    description: 'A shiny metallic skirt that catches the light, perfect for parties and nights out.',
+                    searchQuery: 'women metallic mini skirt silver party',
+                    tags: ['Party', 'Metallic', 'Short']
+                },
+                {
+                    name: 'Sheer Black Top',
+                    description: 'A see-through black top for layering over bralettes or tanks for a sultry look.',
+                    searchQuery: 'women sheer black top mesh party',
+                    tags: ['Sheer', 'Party', 'Layering']
+                },
+                {
+                    name: 'Leopard Print Coat',
+                    description: 'A statement coat in leopard print that adds instant glamour to any outfit.',
+                    searchQuery: 'women leopard print coat faux fur',
+                    tags: ['Statement', 'Animal Print', 'Glamorous']
+                },
+                {
+                    name: 'Strappy Heels',
+                    description: 'Black strappy heels with multiple buckles for a party-ready look.',
+                    searchQuery: 'women strappy black heels party stiletto',
+                    tags: ['Party', 'Heels', 'Strappy']
+                },
+                {
+                    name: 'Sequin Tube Top',
+                    description: 'A sparkly tube top perfect for dancing and making a statement.',
+                    searchQuery: 'women sequin tube top party sparkly',
+                    tags: ['Sparkly', 'Party', 'Statement']
+                },
+                {
+                    name: 'Wide Leg Trousers',
+                    description: 'High-waisted wide leg pants in a luxe fabric for effortless sophistication.',
+                    searchQuery: 'women wide leg trousers high waisted black',
+                    tags: ['Sophisticated', 'Wide Leg', 'High Waisted']
+                }
+            ],
+            'dark-academia': [
+                {
+                    name: 'Tweed Blazer',
+                    description: 'A structured blazer in classic tweed, perfect for scholarly sophistication.',
+                    searchQuery: 'women tweed blazer academic brown vintage',
+                    tags: ['Academic', 'Structured', 'Vintage']
+                },
+                {
+                    name: 'Pleated Midi Skirt',
+                    description: 'A classic pleated skirt in wool or thick cotton, perfect for scholarly looks.',
+                    searchQuery: 'women pleated midi skirt wool burgundy',
+                    tags: ['Classic', 'Pleated', 'Academic']
+                },
+                {
+                    name: 'Oxford Button-Down',
+                    description: 'A crisp white button-down shirt that serves as the perfect base for layering.',
+                    searchQuery: 'women oxford button down shirt white academic',
+                    tags: ['Classic', 'Professional', 'Layering']
+                },
+                {
+                    name: 'Wool Turtleneck',
+                    description: 'A cozy turtleneck in rich colors like burgundy or forest green.',
+                    searchQuery: 'women wool turtleneck sweater burgundy',
+                    tags: ['Cozy', 'Academic', 'Warm']
+                },
+                {
+                    name: 'Oxford Shoes',
+                    description: 'Classic leather oxfords in brown or black for a scholarly finish.',
+                    searchQuery: 'women oxford shoes leather brown academic',
+                    tags: ['Classic', 'Leather', 'Professional']
+                },
+                {
+                    name: 'Wool Trench Coat',
+                    description: 'A long wool coat in a neutral color, perfect for autumn and winter.',
+                    searchQuery: 'women wool trench coat camel academic',
+                    tags: ['Outerwear', 'Classic', 'Warm']
+                }
+            ],
+            'y2k-revival': [
+                {
+                    name: 'Cargo Pants',
+                    description: 'Low-rise cargo pants with multiple pockets in bright or metallic colors.',
+                    searchQuery: 'women cargo pants y2k low rise pink',
+                    tags: ['Y2K', 'Utilitarian', 'Bright']
+                },
+                {
+                    name: 'Crop Top Hoodie',
+                    description: 'A cropped hoodie in a bright color or with holographic details.',
+                    searchQuery: 'women crop hoodie y2k bright pink',
+                    tags: ['Cropped', 'Casual', 'Bright']
+                },
+                {
+                    name: 'Platform Sandals',
+                    description: 'Chunky platform sandals in bright colors or clear plastic for that 2000s vibe.',
+                    searchQuery: 'women platform sandals y2k chunky clear',
+                    tags: ['Platform', 'Y2K', 'Statement']
+                },
+                {
+                    name: 'Metallic Tube Top',
+                    description: 'A shiny tube top in silver or holographic material for futuristic vibes.',
+                    searchQuery: 'women metallic tube top silver holographic',
+                    tags: ['Metallic', 'Futuristic', 'Party']
+                },
+                {
+                    name: 'Low-Rise Jeans',
+                    description: 'The iconic low-rise jeans that defined the early 2000s, styled with modern tops.',
+                    searchQuery: 'women low rise jeans y2k blue denim',
+                    tags: ['Y2K', 'Iconic', 'Low Rise']
+                },
+                {
+                    name: 'Butterfly Hair Clips',
+                    description: 'Colorful butterfly clips and hair accessories for that nostalgic Y2K touch.',
+                    searchQuery: 'butterfly hair clips y2k colorful accessories',
+                    tags: ['Accessories', 'Nostalgic', 'Colorful']
+                }
+            ],
+            'cottagecore': [
+                {
+                    name: 'Floral Midi Dress',
+                    description: 'A romantic midi dress with vintage-inspired floral prints and puff sleeves.',
+                    searchQuery: 'women floral midi dress cottagecore vintage',
+                    tags: ['Romantic', 'Vintage', 'Floral']
+                },
+                {
+                    name: 'Linen Blouse',
+                    description: 'A breezy linen blouse with delicate embroidery or lace details.',
+                    searchQuery: 'women linen blouse white embroidered cottagecore',
+                    tags: ['Natural', 'Breezy', 'Romantic']
+                },
+                {
+                    name: 'High-Waisted Skirt',
+                    description: 'A flowy midi skirt in floral or gingham print, perfect for picnics.',
+                    searchQuery: 'women high waisted midi skirt floral cottagecore',
+                    tags: ['Flowy', 'High Waisted', 'Vintage']
+                },
+                {
+                    name: 'Mary Jane Shoes',
+                    description: 'Classic Mary Jane shoes in leather or patent, perfect for vintage charm.',
+                    searchQuery: 'women mary jane shoes leather brown vintage',
+                    tags: ['Classic', 'Vintage', 'Sweet']
+                },
+                {
+                    name: 'Knit Vest',
+                    description: 'A cozy knit vest in earthy tones, perfect for layering over blouses.',
+                    searchQuery: 'women knit vest cottagecore earthy brown',
+                    tags: ['Cozy', 'Layering', 'Earthy']
+                },
+                {
+                    name: 'Wicker Basket Bag',
+                    description: 'A natural wicker or straw bag perfect for farmers market trips.',
+                    searchQuery: 'wicker basket bag straw cottagecore natural',
+                    tags: ['Natural', 'Practical', 'Rustic']
+                }
+            ]
+        };
+
+        // Image fetching function
+        async function fetchImage(searchQuery) {
+            try {
+                const response = await fetch(`https://api.romanrossi.social/api/images/?q=${encodeURIComponent(searchQuery)}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('API Response for query:', searchQuery, data); // Debug log
+                
+                if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                    // Return a random image from the results for variety
+                    const randomIndex = Math.floor(Math.random() * data.images.length);
+                    return data.images[randomIndex];
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Error fetching image for query:', searchQuery, error);
+                return null;
+            }
+        }
+
+        // Create clothing item HTML
+        function createClothingItem(item) {
+            return `
+                <div class="clothing-item">
+                    <div class="image-container">
+                        <div class="loading-placeholder">🔄</div>
+                    </div>
+                    <div class="clothing-name">${item.name}</div>
+                    <div class="clothing-description">${item.description}</div>
+                    <div class="clothing-tags">
+                        ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load images for an aesthetic
+        async function loadAestheticImages(aestheticId) {
+            const grid = document.getElementById(`${aestheticId}-grid`);
+            const items = aestheticItems[aestheticId];
+            
+            // Create HTML structure first
+            grid.innerHTML = items.map(item => createClothingItem(item)).join('');
+            
+            // Then load images
+            const clothingItems = grid.querySelectorAll('.clothing-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const clothingItem = clothingItems[i];
+                const imageContainer = clothingItem.querySelector('.image-container');
+                
+                try {
+                    console.log(`Fetching images for: ${item.searchQuery}`);
+                    const response = await fetch(`https://api.romanrossi.social/api/images/?q=${encodeURIComponent(item.searchQuery)}`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    
+                    if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+                        // Create image grid
+                        let imageHTML = '';
+                        
+                        if (data.images.length === 1) {
+                            imageHTML = `<img src="${data.images[0]}" alt="${item.name}" class="single-image" loading="lazy">`;
+                        } else {
+                            // Show up to 4 images in a 2x2 grid
+                            const imagesToShow = data.images.slice(0, 4);
+                            imageHTML = imagesToShow.map(url => 
+                                `<img src="${url}" alt="${item.name}" loading="lazy">`
+                            ).join('');
+                        }
+                        
+                        imageContainer.innerHTML = imageHTML;
+                        
+                        // Add error handling for individual images
+                        const imgs = imageContainer.querySelectorAll('img');
+                        imgs.forEach(img => {
+                            img.onerror = function() {
+                                this.style.display = 'none';
+                            };
+                        });
+                        
+                    } else {
+                        console.log('No images returned from API');
+                        imageContainer.innerHTML = `
+                            <div class="error-state">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+                                <div>No images found</div>
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    console.error('Error in loadAestheticImages:', error);
+                    imageContainer.innerHTML = `
+                        <div class="error-state">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                            <div>Failed to fetch images</div>
+                        </div>
+                    `;
+                }
+                
+                // Add a small delay between requests to avoid overwhelming the API
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+        }
+
+        // Tab switching functionality
+        const aestheticButtons = document.querySelectorAll('.tab');
+        const aestheticDisplays = document.querySelectorAll('.aesthetic-display');
+
+        aestheticButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                // Remove active class from all buttons and displays
+                aestheticButtons.forEach(btn => btn.classList.remove('active'));
+                aestheticDisplays.forEach(display => display.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                // Show corresponding display
+                const targetAesthetic = button.getAttribute('data-aesthetic');
+                const targetDisplay = document.getElementById(targetAesthetic);
+                if (targetDisplay) {
+                    targetDisplay.classList.add('active');
+                    
+                    // Load images if not already loaded
+                    const grid = document.getElementById(`${targetAesthetic}-grid`);
+                    if (grid.children.length === 0) {
+                        await loadAestheticImages(targetAesthetic);
+                    }
+                }
+            });
+        });
+
+        // Load initial aesthetic images
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAestheticImages('trendy-minimal');
+        });
+
+        // Add click functionality to clothing items for shopping search
+        function addClickHandlers() {
+            document.addEventListener('click', (e) => {
+                const clothingItem = e.target.closest('.clothing-item');
+                if (clothingItem) {
+                    const clothingName = clothingItem.querySelector('.clothing-name').textContent;
+                    const searchQuery = `${clothingName} women's clothing`;
+                    // Fix: Use tbm=isch for Google Images search
+                    const googleImagesUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}&tbm=isch`;
+                    window.open(googleImagesUrl, '_blank');
+                }
+            });
+        }
+
+        // Initialize click handlers
+        addClickHandlers();
+
+        // Add some interactive animations
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.clothing-item');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                } else {
+                    card.style.transform = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
